@@ -1,0 +1,165 @@
+<header
+    class="app-header sticky top-0 flex w-full bg-gradient-to-r from-[#F5F1E6] to-[#fff4d7] dark:from-gray-900 dark:to-gray-900 border-gray-200 z-99999 xl:border-b "
+    x-data="{
+        isApplicationMenuOpen: false,
+        toggleApplicationMenu() {
+            this.isApplicationMenuOpen = !this.isApplicationMenuOpen;
+        }
+    }">
+    <div class="flex flex-col items-center justify-between grow xl:flex-row xl:px-6">
+        <div
+            class="flex items-center justify-between w-full gap-2 px-3 py-3 border-b border-gray-200 sm:gap-4 xl:justify-normal xl:border-b-0 xl:px-0 lg:py-4">
+
+            <!-- Desktop Sidebar Toggle Button (visible on xl and up) -->
+            <button
+                class="hidden xl:flex items-center justify-center w-10 h-10 text-gray-500 border border-gray-200 rounded-lg lg:h-11 lg:w-11"
+                :class="{ 'bg-gray-100': !$store.sidebar.isExpanded }" @click="$store.sidebar.toggleExpanded()"
+                aria-label="Toggle Sidebar">
+                <svg x-show="!$store.sidebar.isMobileOpen" width="16" height="12" viewBox="0 0 16 12" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M0.583252 1C0.583252 0.585788 0.919038 0.25 1.33325 0.25H14.6666C15.0808 0.25 15.4166 0.585786 15.4166 1C15.4166 1.41421 15.0808 1.75 14.6666 1.75L1.33325 1.75C0.919038 1.75 0.583252 1.41422 0.583252 1ZM0.583252 11C0.583252 10.5858 0.919038 10.25 1.33325 10.25L14.6666 10.25C15.0808 10.25 15.4166 10.5858 15.4166 11C15.4166 11.4142 15.0808 11.75 14.6666 11.75L1.33325 11.75C0.919038 11.75 0.583252 11.4142 0.583252 11ZM1.33325 5.25C0.919038 5.25 0.583252 5.58579 0.583252 6C0.583252 6.41421 0.919038 6.75 1.33325 6.75L7.99992 6.75C8.41413 6.75 8.74992 6.41421 8.74992 6C8.74992 5.58579 8.41413 5.25 7.99992 5.25L1.33325 5.25Z"
+                        fill="currentColor"></path>
+                </svg>
+                <svg x-show="$store.sidebar.isMobileOpen" class="fill-current" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M6.21967 7.28131C5.92678 6.98841 5.92678 6.51354 6.21967 6.22065C6.51256 5.92775 6.98744 5.92775 7.28033 6.22065L11.999 10.9393L16.7176 6.22078C17.0105 5.92789 17.4854 5.92788 17.7782 6.22078C18.0711 6.51367 18.0711 6.98855 17.7782 7.28144L13.0597 12L17.7782 16.7186C18.0711 17.0115 18.0711 17.4863 17.7782 17.7792C17.4854 18.0721 17.0105 18.0721 16.7176 17.7792L11.999 13.0607L7.28033 17.7794C6.98744 18.0722 6.51256 18.0722 6.21967 17.7794C5.92678 17.4865 5.92678 17.0116 6.21967 16.7187L10.9384 12L6.21967 7.28131Z"
+                        fill="" />
+                </svg>
+            </button>
+
+            <!-- Mobile Menu Toggle Button (visible below xl) -->
+            <button
+                class="flex xl:hidden items-center justify-center w-10 h-10 text-gray-500 rounded-lg lg:h-11 lg:w-11"
+                :class="{ 'bg-gray-100': $store.sidebar.isMobileOpen }" @click="$store.sidebar.toggleMobileOpen()"
+                aria-label="Toggle Mobile Menu">
+                <svg x-show="!$store.sidebar.isMobileOpen" width="16" height="12" viewBox="0 0 16 12"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M0.583252 1C0.583252 0.585788 0.919038 0.25 1.33325 0.25H14.6666C15.0808 0.25 15.4166 0.585786 15.4166 1C15.4166 1.41421 15.0808 1.75 14.6666 1.75L1.33325 1.75C0.919038 1.75 0.583252 1.41422 0.583252 1ZM0.583252 11C0.583252 10.5858 0.919038 10.25 1.33325 10.25L14.6666 10.25C15.0808 10.25 15.4166 10.5858 15.4166 11C15.4166 11.4142 15.0808 11.75 14.6666 11.75L1.33325 11.75C0.919038 11.75 0.583252 11.4142 0.583252 11ZM1.33325 5.25C0.919038 5.25 0.583252 5.58579 0.583252 6C0.583252 6.41421 0.919038 6.75 1.33325 6.75L7.99992 6.75C8.41413 6.75 8.74992 6.41421 8.74992 6C8.74992 5.58579 8.41413 5.25 7.99992 5.25L1.33325 5.25Z"
+                        fill="currentColor"></path>
+                </svg>
+                <svg x-show="$store.sidebar.isMobileOpen" class="fill-current" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M6.21967 7.28131C5.92678 6.98841 5.92678 6.51354 6.21967 6.22065C6.51256 5.92775 6.98744 5.92775 7.28033 6.22065L11.999 10.9393L16.7176 6.22078C17.0105 5.92789 17.4854 5.92788 17.7782 6.22078C18.0711 6.51367 18.0711 6.98855 17.7782 7.28144L13.0597 12L17.7782 16.7186C18.0711 17.0115 18.0711 17.4863 17.7782 17.7792C17.4854 18.0721 17.0105 18.0721 16.7176 17.7792L11.999 13.0607L7.28033 17.7794C6.98744 18.0722 6.51256 18.0722 6.21967 17.7794C5.92678 17.4865 5.92678 17.0116 6.21967 16.7187L10.9384 12L6.21967 7.28131Z"
+                        fill="" />
+                </svg>
+            </button>
+
+            <!-- Logo (mobile only) -->
+            <a href="/" class="xl:hidden">
+                <div class="flex items-center gap-2">
+                    <img class="w-15 h-15" src="/images/logo/logo-fav.png" alt="Logo" />
+
+                    <div class="leading-tight text-center">
+                        <div class="text-sm font-extrabold tracking-wide text-gray-900 dark:text-white">
+                            PERSI
+                        </div>
+                        <div class="text-sm font-extrabold tracking-wide text-gray-900 dark:text-white">
+                            JAWA TENGAH
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Application Menu Toggle (mobile only) -->
+            <button @click="toggleApplicationMenu()"
+                class="flex items-center justify-center w-10 h-10 text-gray-700 rounded-lg z-99999 hover:bg-gray-100 xl:hidden">
+                <!-- Dots Icon -->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M5.99902 10.4951C6.82745 10.4951 7.49902 11.1667 7.49902 11.9951V12.0051C7.49902 12.8335 6.82745 13.5051 5.99902 13.5051C5.1706 13.5051 4.49902 12.8335 4.49902 12.0051V11.9951C4.49902 11.1667 5.1706 10.4951 5.99902 10.4951ZM17.999 10.4951C18.8275 10.4951 19.499 11.1667 19.499 11.9951V12.0051C19.499 12.8335 18.8275 13.5051 17.999 13.5051C17.1706 13.5051 16.499 12.8335 16.499 12.0051V11.9951C16.499 11.1667 17.1706 10.4951 17.999 10.4951ZM13.499 11.9951C13.499 11.1667 12.8275 10.4951 11.999 10.4951C11.1706 10.4951 10.499 11.1667 10.499 11.9951V12.0051C10.499 12.8335 11.1706 13.5051 11.999 13.5051C12.8275 13.5051 13.499 12.8335 13.499 12.0051V11.9951Z"
+                        fill="currentColor" />
+                </svg>
+            </button>
+
+            <!-- Search Bar (desktop only) -->
+            {{-- <div class="hidden xl:block">
+                <form>
+                    <div class="relative">
+                        <span class="absolute -translate-y-1/2 pointer-events-none left-4 top-1/2">
+                            <!-- Search Icon -->
+                            <svg class="fill-gray-500" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M3.04175 9.37363C3.04175 5.87693 5.87711 3.04199 9.37508 3.04199C12.8731 3.04199 15.7084 5.87693 15.7084 9.37363C15.7084 12.8703 12.8731 15.7053 9.37508 15.7053C5.87711 15.7053 3.04175 12.8703 3.04175 9.37363ZM9.37508 1.54199C5.04902 1.54199 1.54175 5.04817 1.54175 9.37363C1.54175 13.6991 5.04902 17.2053 9.37508 17.2053C11.2674 17.2053 13.003 16.5344 14.357 15.4176L17.177 18.238C17.4699 18.5309 17.9448 18.5309 18.2377 18.238C18.5306 17.9451 18.5306 17.4703 18.2377 17.1774L15.418 14.3573C16.5365 13.0033 17.2084 11.2669 17.2084 9.37363C17.2084 5.04817 13.7011 1.54199 9.37508 1.54199Z"
+                                    fill="" />
+                            </svg>
+                        </span>
+                        <input type="text" placeholder="Search or type command..."
+                            class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-200 bg-transparent py-2.5 pl-12 pr-14 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 xl:w-[430px]" />
+                        <button
+                            class="absolute right-2.5 top-1/2 inline-flex -translate-y-1/2 items-center gap-0.5 rounded-lg border border-gray-200 bg-gray-50 px-[7px] py-[4.5px] text-xs -tracking-[0.2px] text-gray-500">
+                            <span> ⌘ </span>
+                            <span> K </span>
+                        </button>
+                    </div>
+                </form>
+            </div> --}}
+            <div class="hidden xl:block">
+                {{-- Logo PERSI (sesuaikan path asset kamu) --}}
+                <div class="hidden sm:flex items-center gap-2">
+                    <img src="/images/logo/logo-fav.png" alt="PERSI"
+                        class="h-15 w-15 rounded-full border border-[#0F3F3B]/20" />
+
+                    {{-- Title 2 baris --}}
+                    <div class="leading-tight">
+                        <div class="text-sm font-extrabold tracking-wide text-gray-900 dark:text-white">
+                            PERHIMPUNAN RUMAH SAKIT SELURUH INDONESIA
+                        </div>
+                        <div class="text-sm font-extrabold tracking-wide text-gray-900 dark:text-white">
+                            DAERAH JAWA TENGAH
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Application Menu (mobile) and Right Side Actions (desktop) -->
+        <div :class="isApplicationMenuOpen ? 'flex' : 'hidden'"
+            class="items-center justify-between w-full gap-4 px-5 py-4 xl:flex shadow-theme-md xl:justify-end xl:px-0 xl:shadow-none">
+            <div class="flex items-center gap-2 2xsm:gap-3">
+                <!-- Theme Toggle Button -->
+                <button
+                    class="relative flex items-center justify-center text-gray-500 transition-colors bg-white border border-gray-200 rounded-full hover:text-dark-900 h-11 w-11 hover:bg-gray-100 hover:text-gray-700"
+                    @click="$store.theme.toggle()">
+
+                    <svg class="dark:hidden" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M17.4547 11.97L18.1799 12.1611C18.265 11.8383 18.1265 11.4982 17.8401 11.3266C17.5538 11.1551 17.1885 11.1934 16.944 11.4207L17.4547 11.97ZM8.0306 2.5459L8.57989 3.05657C8.80718 2.81209 8.84554 2.44682 8.67398 2.16046C8.50243 1.8741 8.16227 1.73559 7.83948 1.82066L8.0306 2.5459ZM12.9154 13.0035C9.64678 13.0035 6.99707 10.3538 6.99707 7.08524H5.49707C5.49707 11.1823 8.81835 14.5035 12.9154 14.5035V13.0035ZM16.944 11.4207C15.8869 12.4035 14.4721 13.0035 12.9154 13.0035V14.5035C14.8657 14.5035 16.6418 13.7499 17.9654 12.5193L16.944 11.4207ZM16.7295 11.7789C15.9437 14.7607 13.2277 16.9586 10.0003 16.9586V18.4586C13.9257 18.4586 17.2249 15.7853 18.1799 12.1611L16.7295 11.7789ZM10.0003 16.9586C6.15734 16.9586 3.04199 13.8433 3.04199 10.0003H1.54199C1.54199 14.6717 5.32892 18.4586 10.0003 18.4586V16.9586ZM3.04199 10.0003C3.04199 6.77289 5.23988 4.05695 8.22173 3.27114L7.83948 1.82066C4.21532 2.77574 1.54199 6.07486 1.54199 10.0003H3.04199ZM6.99707 7.08524C6.99707 5.52854 7.5971 4.11366 8.57989 3.05657L7.48132 2.03522C6.25073 3.35885 5.49707 5.13487 5.49707 7.08524H6.99707Z"
+                            fill="currentColor" />
+                    </svg>
+                    <svg class="hidden dark:flex" width="20" height="20" viewbox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 ltr:mr-2 rtl:ml-2">
+                        <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5">
+                        </circle>
+                        <path d="M12 2V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                        </path>
+                        <path d="M12 20V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                        </path>
+                        <path d="M4 12L2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                        </path>
+                        <path d="M22 12L20 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                        </path>
+                        <path opacity="0.5" d="M19.7778 4.22266L17.5558 6.25424" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round"></path>
+                        <path opacity="0.5" d="M4.22217 4.22266L6.44418 6.25424" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round"></path>
+                        <path opacity="0.5" d="M6.44434 17.5557L4.22211 19.7779" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round"></path>
+                        <path opacity="0.5" d="M19.7778 19.7773L17.5558 17.5551" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round"></path>
+                    </svg>
+                </button>
+
+                <!-- Notification Dropdown -->
+                {{-- <x-header.notification-dropdown /> --}}
+            </div>
+
+            <!-- User Dropdown -->
+            <x-header.user-dropdown />
+        </div>
+    </div>
+</header>
