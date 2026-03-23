@@ -62,7 +62,7 @@
                         <div class="text-sm font-extrabold tracking-wide text-[#0F3F3B]">
                             PILIH UMK UNTUK REALISASI
                         </div>
-                        <div class="text-xs text-gray-700">
+                        <div class="text-xs text-gray-700 dark:text-gray-300">
                             Ketik nomor / kegiatan / pos untuk mencari.
                         </div>
                     </div>
@@ -72,9 +72,6 @@
                     </div>
                 </div>
 
-                <div class="px-4 md:px-6 pb-4 md:pb-6 text-center text-xs italic text-white/80">
-                    Hak Cipta Milik Allah Semata
-                </div>
             </div>
         </div>
     </div>
@@ -269,6 +266,31 @@
         .dt-orange .dataTable-table thead th {
             background: #E77A2E
         }
+
+        html.dark .dt-orange .dataTable-search .dataTable-input,
+        html.dark .dt-orange .dataTable-selector {
+            background: #1f2937;
+            border-color: #374151;
+            color: #e5e7eb;
+        }
+
+        html.dark .dt-orange .dataTable-table tbody td {
+            color: #e5e7eb;
+            border-bottom-color: #374151;
+        }
+
+        html.dark .dt-orange .dataTable-table tbody tr:nth-child(even) td {
+            background: rgba(255, 255, 255, .02);
+        }
+
+        html.dark .dt-orange .dataTable-table tbody tr:hover td {
+            background: rgba(255, 255, 255, .05);
+        }
+
+        html.dark .dt-orange .dataTable-info,
+        html.dark .dt-orange .dataTable-pagination a {
+            color: #cbd5e1;
+        }
     </style>
 
     <script>
@@ -330,7 +352,7 @@
                             {
                                 select: 5,
                                 render: (data) =>
-                                    `<span class="font-extrabold text-gray-900">${this.rupiah(data)}</span>`
+                                    `<span class="font-extrabold text-gray-900 dark:text-gray-100">${this.rupiah(data)}</span>`
                             },
                             {
                                 select: 0,

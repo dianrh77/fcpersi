@@ -1,5 +1,6 @@
 <header
-    class="app-header sticky top-0 flex w-full bg-gradient-to-r from-[#F5F1E6] to-[#fff4d7] dark:from-gray-900 dark:to-gray-900 border-gray-200 z-99999 xl:border-b "
+    class="app-header sticky top-0 flex w-full bg-[#1E293B] border-b border-white/15 z-99999"
+    style="background: linear-gradient(90deg, #1e293b 0%, #243447 100%) !important; border-bottom: 1px solid rgba(255,255,255,.14) !important;"
     x-data="{
         isApplicationMenuOpen: false,
         toggleApplicationMenu() {
@@ -8,12 +9,12 @@
     }">
     <div class="flex flex-col items-center justify-between grow xl:flex-row xl:px-6">
         <div
-            class="flex items-center justify-between w-full gap-2 px-3 py-3 border-b border-gray-200 sm:gap-4 xl:justify-normal xl:border-b-0 xl:px-0 lg:py-4">
+            class="flex items-center justify-between w-full gap-2 px-3 py-3 border-b border-white/15 sm:gap-4 xl:justify-normal xl:border-b-0 xl:px-0 lg:py-4">
 
             <!-- Desktop Sidebar Toggle Button (visible on xl and up) -->
             <button
-                class="hidden xl:flex items-center justify-center w-10 h-10 text-gray-500 border border-gray-200 rounded-lg lg:h-11 lg:w-11"
-                :class="{ 'bg-gray-100': !$store.sidebar.isExpanded }" @click="$store.sidebar.toggleExpanded()"
+                class="hidden xl:flex items-center justify-center w-10 h-10 text-white/85 border border-white/20 rounded-lg lg:h-11 lg:w-11 hover:bg-white/10"
+                :class="{ 'bg-white/10': !$store.sidebar.isExpanded }" @click="$store.sidebar.toggleExpanded()"
                 aria-label="Toggle Sidebar">
                 <svg x-show="!$store.sidebar.isMobileOpen" width="16" height="12" viewBox="0 0 16 12" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -31,8 +32,8 @@
 
             <!-- Mobile Menu Toggle Button (visible below xl) -->
             <button
-                class="flex xl:hidden items-center justify-center w-10 h-10 text-gray-500 rounded-lg lg:h-11 lg:w-11"
-                :class="{ 'bg-gray-100': $store.sidebar.isMobileOpen }" @click="$store.sidebar.toggleMobileOpen()"
+                class="flex xl:hidden items-center justify-center w-10 h-10 text-white/85 rounded-lg lg:h-11 lg:w-11 hover:bg-white/10"
+                :class="{ 'bg-white/10': $store.sidebar.isMobileOpen }" @click="$store.sidebar.toggleMobileOpen()"
                 aria-label="Toggle Mobile Menu">
                 <svg x-show="!$store.sidebar.isMobileOpen" width="16" height="12" viewBox="0 0 16 12"
                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,10 +55,10 @@
                     <img class="w-15 h-15" src="/images/logo/logo-fav.png" alt="Logo" />
 
                     <div class="leading-tight text-center">
-                        <div class="text-sm font-extrabold tracking-wide text-gray-900 dark:text-white">
+                        <div class="text-sm font-extrabold tracking-wide text-white">
                             PERSI
                         </div>
-                        <div class="text-sm font-extrabold tracking-wide text-gray-900 dark:text-white">
+                        <div class="text-sm font-extrabold tracking-wide text-white">
                             JAWA TENGAH
                         </div>
                     </div>
@@ -66,7 +67,7 @@
 
             <!-- Application Menu Toggle (mobile only) -->
             <button @click="toggleApplicationMenu()"
-                class="flex items-center justify-center w-10 h-10 text-gray-700 rounded-lg z-99999 hover:bg-gray-100 xl:hidden">
+                class="flex items-center justify-center w-10 h-10 text-white/90 rounded-lg z-99999 hover:bg-white/10 xl:hidden">
                 <!-- Dots Icon -->
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -105,10 +106,10 @@
 
                     {{-- Title 2 baris --}}
                     <div class="leading-tight">
-                        <div class="text-sm font-extrabold tracking-wide text-gray-900 dark:text-white">
+                        <div class="text-sm font-extrabold tracking-wide text-white">
                             PERHIMPUNAN RUMAH SAKIT SELURUH INDONESIA
                         </div>
-                        <div class="text-sm font-extrabold tracking-wide text-gray-900 dark:text-white">
+                        <div class="text-sm font-extrabold tracking-wide text-white">
                             DAERAH JAWA TENGAH
                         </div>
                     </div>
@@ -122,7 +123,7 @@
             <div class="flex items-center gap-2 2xsm:gap-3">
                 <!-- Theme Toggle Button -->
                 <button
-                    class="relative flex items-center justify-center text-gray-500 transition-colors bg-white border border-gray-200 rounded-full hover:text-dark-900 h-11 w-11 hover:bg-gray-100 hover:text-gray-700"
+                    class="relative flex items-center justify-center text-white/90 transition-colors bg-white/10 border border-white/20 rounded-full h-11 w-11 hover:bg-white/20"
                     @click="$store.theme.toggle()">
 
                     <svg class="dark:hidden" width="20" height="20" viewBox="0 0 20 20" fill="none"

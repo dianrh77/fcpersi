@@ -934,7 +934,7 @@ pre[class*='language-'] {
 /* =========================
    Global Layout Theme (Visible)
    ========================= */
-body:not(.dark) {
+html:not(.dark) body {
   background: linear-gradient(180deg, #f6edd4 0%, #efe4c7 100%) !important;
 }
 
@@ -949,9 +949,9 @@ body:not(.dark) {
 }
 
 .app-header {
-  background: linear-gradient(90deg, #fff7df 0%, #f8ebc2 100%) !important;
-  border-bottom: 1px solid #e8d8ac !important;
-  box-shadow: 0 2px 14px rgba(124, 98, 22, 0.08);
+  background: linear-gradient(90deg, #1e293b 0%, #243447 100%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 2px 14px rgba(15, 23, 42, 0.35);
 }
 
 #sidebar {
@@ -966,6 +966,46 @@ body:not(.dark) {
 
 #sidebar .menu-item-inactive:hover {
   background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* =========================
+   Dark Mode Overrides
+   ========================= */
+html.dark body {
+  background: linear-gradient(180deg, #0b1220 0%, #0f172a 100%) !important;
+}
+
+html.dark .app-shell {
+  background:
+    radial-gradient(circle at 15% 0%, rgba(30, 41, 59, 0.35) 0%, rgba(30, 41, 59, 0) 52%),
+    linear-gradient(180deg, #0b1220 0%, #0f172a 100%) !important;
+}
+
+html.dark .app-main-content {
+  background: linear-gradient(180deg, #111827 0%, #0f172a 100%) !important;
+}
+
+html.dark .bg-\[\#F5F1E6\] {
+  background: #1f2937 !important;
+}
+
+html.dark .from-\[\#fdebb9\] {
+  --tw-gradient-from: #111827 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: color-mix(in oklab, #111827 0%, transparent) var(--tw-gradient-to-position) !important;
+}
+
+html.dark .from-\[\#F5F1E6\] {
+  --tw-gradient-from: #111827 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: color-mix(in oklab, #111827 0%, transparent) var(--tw-gradient-to-position) !important;
+}
+
+html.dark .to-\[\#F5F1E6\],
+html.dark .to-\[\#fff4d7\] {
+  --tw-gradient-to: #0f172a var(--tw-gradient-to-position) !important;
+}
+
+html.dark .text-\[\#0F3F3B\] {
+  color: #e5e7eb !important;
 }
 
 /* Fix tiny notch/gap between adjacent tabs */

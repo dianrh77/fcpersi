@@ -67,18 +67,18 @@
                             <div class="grid grid-cols-1 gap-4">
 
                                 <div>
-                                    <label class="mb-1 block text-xs font-semibold text-gray-700">Tgl. Pengajuan</label>
+                                    <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Tgl. Pengajuan</label>
                                     <input type="date" name="request_date"
                                         value="{{ old('request_date', now()->toDateString()) }}"
-                                        class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                        class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm"
                                         required>
                                 </div>
 
                                 {{-- ✅ POS / SUMBER DANA --}}
                                 <div>
-                                    <label class="mb-1 block text-xs font-semibold text-gray-700">Sumber Dana (Pos)</label>
+                                    <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Sumber Dana (Pos)</label>
                                     <select name="cash_account_id"
-                                        class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                        class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm"
                                         required>
                                         <option value="">Pilih Pos</option>
                                         @foreach ($cashAccounts as $acc)
@@ -93,18 +93,18 @@
                                 </div>
 
                                 <div>
-                                    <label class="mb-1 block text-xs font-semibold text-gray-700">Nama Kegiatan</label>
+                                    <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Nama Kegiatan</label>
                                     <input type="text" name="activity_name" value="{{ old('activity_name') }}"
-                                        class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                        class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm"
                                         placeholder="Contoh: Seminar XXXXXXXX" required>
                                 </div>
 
                                 <div>
-                                    <label class="mb-1 block text-xs font-semibold text-gray-700">Nominal UMK (Rp.)</label>
+                                    <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Nominal UMK (Rp.)</label>
                                     <input type="text" name="amount" value="{{ old('amount') }}"
-                                        class="rupiah w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                        class="rupiah w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm"
                                         placeholder="Rp 0" inputmode="numeric" required>
-                                    <div class="mt-1 text-[11px] text-gray-600">
+                                    <div class="mt-1 text-[11px] text-gray-600 dark:text-gray-300">
                                         * Nominal UMK bersifat global. Detail transaksi ada di tab REALISASI.
                                     </div>
                                 </div>
@@ -114,9 +114,9 @@
 
                         {{-- KANAN --}}
                         <div class="md:col-span-6">
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Deskripsi Kegiatan</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Deskripsi Kegiatan</label>
                             <textarea name="activity_description" rows="6"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm" placeholder="Deskripsi kegiatan...">{{ old('activity_description') }}</textarea>
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm" placeholder="Deskripsi kegiatan...">{{ old('activity_description') }}</textarea>
 
                             <div class="mt-4 flex justify-end">
                                 <button type="submit"
@@ -129,9 +129,6 @@
 
                 </div>
 
-                <div class="px-4 md:px-6 pb-4 md:pb-6 text-center text-xs italic text-white/80">
-                    Hak Cipta Milik Allah Semata
-                </div>
             </div>
         </div>
     </div>

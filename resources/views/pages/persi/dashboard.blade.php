@@ -42,8 +42,8 @@
                     <div class="rounded-xl bg-[#F5F1E6] p-4 shadow-sm">
                         <div class="flex items-center justify-between">
                             <div>
-                                <div class="text-xs font-semibold uppercase text-gray-700">Saldo Kas Kecil</div>
-                                <div class="mt-1 text-lg font-bold text-gray-900">
+                                <div class="text-xs font-semibold uppercase text-gray-700 dark:text-gray-300">Saldo Kas Kecil</div>
+                                <div class="mt-1 text-lg font-bold text-gray-900 dark:text-gray-100">
                                     Rp {{ number_format($saldoKasKecil, 0, ',', '.') }}
                                 </div>
                             </div>
@@ -61,8 +61,8 @@
                     <div class="rounded-xl bg-[#F5F1E6] p-4 shadow-sm">
                         <div class="flex items-center justify-between">
                             <div>
-                                <div class="text-xs font-semibold uppercase text-gray-700">Saldo Bank</div>
-                                <div class="mt-1 text-lg font-bold text-gray-900">
+                                <div class="text-xs font-semibold uppercase text-gray-700 dark:text-gray-300">Saldo Bank</div>
+                                <div class="mt-1 text-lg font-bold text-gray-900 dark:text-gray-100">
                                     Rp {{ number_format($saldoKasBesar, 0, ',', '.') }}
                                 </div>
                             </div>
@@ -80,8 +80,8 @@
                     <div class="rounded-xl bg-[#F5F1E6] p-4 shadow-sm">
                         <div class="flex items-center justify-between">
                             <div>
-                                <div class="text-xs font-semibold uppercase text-gray-700">Penerimaan</div>
-                                <div class="mt-1 text-lg font-bold text-gray-900">
+                                <div class="text-xs font-semibold uppercase text-gray-700 dark:text-gray-300">Penerimaan</div>
+                                <div class="mt-1 text-lg font-bold text-gray-900 dark:text-gray-100">
                                     Rp {{ number_format($incomeThisMonth, 0, ',', '.') }}
                                 </div>
                             </div>
@@ -99,8 +99,8 @@
                     <div class="rounded-xl bg-[#F5F1E6] p-4 shadow-sm">
                         <div class="flex items-center justify-between">
                             <div>
-                                <div class="text-xs font-semibold uppercase text-gray-700">Pengeluaran</div>
-                                <div class="mt-1 text-lg font-bold text-gray-900">
+                                <div class="text-xs font-semibold uppercase text-gray-700 dark:text-gray-300">Pengeluaran</div>
+                                <div class="mt-1 text-lg font-bold text-gray-900 dark:text-gray-100">
                                     Rp {{ number_format($expenseThisMonth, 0, ',', '.') }}
                                 </div>
                             </div>
@@ -119,14 +119,14 @@
                 {{-- CHARTS (2 kolom) --}}
                 <div class="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
                     <div class="rounded-xl bg-[#F5F1E6] p-4">
-                        <div class="mb-2 text-sm font-bold text-gray-900">Income per Month</div>
+                        <div class="mb-2 text-sm font-bold text-gray-900 dark:text-gray-100">Income per Month</div>
                         <div class="h-[260px]">
                             <canvas id="incomeChart"></canvas>
                         </div>
                     </div>
 
                     <div class="rounded-xl bg-[#F5F1E6] p-4">
-                        <div class="mb-2 text-sm font-bold text-gray-900">Expense per Month</div>
+                        <div class="mb-2 text-sm font-bold text-gray-900 dark:text-gray-100">Expense per Month</div>
                         <div class="h-[260px]">
                             <canvas id="expenseChart"></canvas>
                         </div>
@@ -157,6 +157,11 @@
         const incomeData = @json($incomeByMonthSafe);
         const expenseData = @json($expenseByMonthSafe);
 
+        const isDark = document.documentElement.classList.contains('dark');
+        const axisColor = isDark ? '#cbd5e1' : '#334155';
+        const gridColor = isDark ? 'rgba(148,163,184,0.25)' : 'rgba(15,23,42,0.12)';
+        const barColor = isDark ? '#60a5fa' : '#7bb3d9';
+
         const baseOptions = {
             responsive: true,
             maintainAspectRatio: false,
@@ -167,13 +172,21 @@
             },
             scales: {
                 x: {
+                    ticks: {
+                        color: axisColor
+                    },
                     grid: {
-                        display: false
+                        display: false,
+                        color: gridColor
                     }
                 },
                 y: {
                     ticks: {
+                        color: axisColor,
                         callback: (v) => new Intl.NumberFormat('id-ID').format(v)
+                    },
+                    grid: {
+                        color: gridColor
                     }
                 }
             }
@@ -186,6 +199,7 @@
                 datasets: [{
                     data: incomeData,
                     borderRadius: 8,
+                    backgroundColor: barColor
                 }]
             },
             options: baseOptions
@@ -198,6 +212,7 @@
                 datasets: [{
                     data: expenseData,
                     borderRadius: 8,
+                    backgroundColor: barColor
                 }]
             },
             options: baseOptions

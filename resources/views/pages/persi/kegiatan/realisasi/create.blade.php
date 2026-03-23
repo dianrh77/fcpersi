@@ -61,49 +61,49 @@
 
                     {{-- HEADER KEGIATAN (ringkas seperti UMK) --}}
                     <div class="mb-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div class="rounded-xl border border-black/10 bg-white p-4">
+                        <div class="rounded-xl border border-black/10 bg-white dark:border-gray-700 dark:bg-gray-800 p-4">
                             <div class="grid grid-cols-1 gap-3">
                                 <div class="flex items-center justify-between gap-3">
-                                    <div class="text-sm font-semibold text-gray-700">No. Kegiatan</div>
-                                    <div class="text-sm font-extrabold text-gray-900">
+                                    <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">No. Kegiatan</div>
+                                    <div class="text-sm font-extrabold text-gray-900 dark:text-gray-100">
                                         {{ $kegiatan->activity_no ?? '-' }}
                                     </div>
                                 </div>
 
                                 <div class="flex items-center justify-between gap-3">
-                                    <div class="text-sm font-semibold text-gray-700">Tgl. Kegiatan</div>
-                                    <div class="text-sm font-bold text-gray-900">
+                                    <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">Tgl. Kegiatan</div>
+                                    <div class="text-sm font-bold text-gray-900 dark:text-gray-100">
                                         {{ $kegiatan?->activity_date ? \Carbon\Carbon::parse($kegiatan->activity_date)->format('d/m/Y') : '-' }}
                                     </div>
                                 </div>
 
                                 <div class="flex items-center justify-between gap-3">
-                                    <div class="text-sm font-semibold text-gray-700">Pos</div>
-                                    <div class="text-sm font-bold text-gray-900 text-right">
+                                    <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">Pos</div>
+                                    <div class="text-sm font-bold text-gray-900 dark:text-gray-100 text-right">
                                         {{ $kegiatan->cashAccount->name ?? '-' }}
                                     </div>
                                 </div>
 
                                 <div class="flex items-center justify-between gap-3">
-                                    <div class="text-sm font-semibold text-gray-700">Status</div>
+                                    <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">Status</div>
                                     <div>
                                         <span
                                             class="inline-flex rounded-full px-2 py-0.5 text-xs font-bold
-                                                {{ ($kegiatan->status ?? 'outstanding') === 'closed' ? 'bg-gray-100 text-gray-700' : 'bg-green-100 text-green-700' }}">
+                                                {{ ($kegiatan->status ?? 'outstanding') === 'closed' ? 'bg-gray-100 dark:bg-gray-700/40 text-gray-700 dark:text-gray-300' : 'bg-green-100 text-green-700' }}">
                                             {{ ($kegiatan->status ?? 'outstanding') === 'closed' ? 'Closed' : 'Outstanding' }}
                                         </span>
                                     </div>
                                 </div>
 
                                 <div class="flex items-center justify-between gap-3">
-                                    <div class="text-sm font-semibold text-gray-700">Anggaran</div>
-                                    <div class="text-sm font-extrabold text-gray-900">
+                                    <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">Anggaran</div>
+                                    <div class="text-sm font-extrabold text-gray-900 dark:text-gray-100">
                                         Rp {{ number_format((int) ($kegiatan->budget_amount ?? 0), 0, ',', '.') }}
                                     </div>
                                 </div>
 
                                 <div class="flex items-center justify-between gap-3">
-                                    <div class="text-sm font-semibold text-gray-700">Outstanding</div>
+                                    <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">Outstanding</div>
                                     <div class="text-lg font-extrabold text-blue-700">
                                         Rp {{ number_format((int) ($kegiatan->outstanding ?? 0), 0, ',', '.') }}
                                     </div>
@@ -111,13 +111,13 @@
                             </div>
                         </div>
 
-                        <div class="rounded-xl border border-black/10 bg-white p-4">
-                            <div class="text-sm font-semibold text-gray-700 mb-2">Nama & Deskripsi Kegiatan</div>
-                            <div class="font-extrabold text-gray-900">
+                        <div class="rounded-xl border border-black/10 bg-white dark:border-gray-700 dark:bg-gray-800 p-4">
+                            <div class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Nama & Deskripsi Kegiatan</div>
+                            <div class="font-extrabold text-gray-900 dark:text-gray-100">
                                 {{ $kegiatan->activity_name ?? '-' }}
                             </div>
                             <div
-                                class="mt-2 min-h-[74px] rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800">
+                                class="mt-2 min-h-[74px] rounded-lg border border-gray-200 bg-gray-50 dark:bg-gray-700/40 px-3 py-2 text-sm text-gray-800 dark:text-gray-200">
                                 {{ $kegiatan->activity_description ?? '-' }}
                             </div>
                         </div>
@@ -130,17 +130,17 @@
                         <div class="md:col-span-6">
                             <div class="grid grid-cols-1 gap-4">
                                 <div>
-                                    <label class="mb-1 block text-xs font-semibold text-gray-700">Tanggal</label>
+                                    <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-300">Tanggal</label>
                                     <input type="date" name="trx_date"
                                         value="{{ old('trx_date', now()->toDateString()) }}"
-                                        class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                        class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 text-sm"
                                         @if (($kegiatan->status ?? 'outstanding') === 'closed') disabled @endif required>
                                 </div>
 
                                 <div>
-                                    <label class="mb-1 block text-xs font-semibold text-gray-700">Jenis</label>
+                                    <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-300">Jenis</label>
                                     <select name="type"
-                                        class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                        class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 text-sm"
                                         @if (($kegiatan->status ?? 'outstanding') === 'closed') disabled @endif required>
                                         <option value="expense" @selected(old('type') === 'expense')>Keluar</option>
                                         <option value="income" @selected(old('type') === 'income')>Masuk</option>
@@ -148,9 +148,9 @@
                                 </div>
 
                                 <div>
-                                    <label class="mb-1 block text-xs font-semibold text-gray-700">COA</label>
+                                    <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-300">COA</label>
                                     <select name="coa_account_id"
-                                        class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                        class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 text-sm"
                                         @if (($kegiatan->status ?? 'outstanding') === 'closed') disabled @endif required>
                                         <option value="">Pilih COA</option>
                                         @foreach ($coaAccounts as $coa)
@@ -166,16 +166,16 @@
                         <div class="md:col-span-6">
                             <div class="grid grid-cols-1 gap-4">
                                 <div>
-                                    <label class="mb-1 block text-xs font-semibold text-gray-700">Nominal (Rp.)</label>
+                                    <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-300">Nominal (Rp.)</label>
                                     <input type="text" name="amount" value="{{ old('amount') }}"
-                                        class="rupiah w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                        class="rupiah w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 text-sm"
                                         placeholder="Rp 0" inputmode="numeric"
                                         @if (($kegiatan->status ?? 'outstanding') === 'closed') disabled @endif required>
                                 </div>
 
                                 <div>
-                                    <label class="mb-1 block text-xs font-semibold text-gray-700">Keterangan</label>
-                                    <textarea name="description" rows="4" class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                    <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-300">Keterangan</label>
+                                    <textarea name="description" rows="4" class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 text-sm"
                                         placeholder="Keterangan..." @if (($kegiatan->status ?? 'outstanding') === 'closed') disabled @endif>{{ old('description') }}</textarea>
                                 </div>
                             </div>
@@ -210,9 +210,9 @@
                         </div>
                     </div>
 
-                    <div class="overflow-x-auto rounded-xl border border-black/10 bg-white">
+                    <div class="overflow-x-auto rounded-xl border border-black/10 bg-white dark:border-gray-700 dark:bg-gray-800">
                         <table class="min-w-full text-sm">
-                            <thead class="bg-green-700 text-white">
+                            <thead class="bg-green-700 text-white dark:bg-green-800">
                                 <tr>
                                     <th class="px-4 py-3">Tanggal</th>
                                     <th class="px-4 py-3">Jenis</th>
@@ -221,11 +221,11 @@
                                     <th class="px-4 py-3">Keterangan</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-black/10">
+                            <tbody class="divide-y divide-black/10 dark:divide-gray-700">
                                 @if ($kegiatan && $kegiatan->realizations && $kegiatan->realizations->count())
                                     @foreach ($kegiatan->realizations->sortByDesc('trx_date') as $r)
                                         <tr
-                                            class="hover:bg-black/5 {{ $r->type === 'income' ? 'bg-green-50/40' : 'bg-red-50/40' }}">
+                                            class="hover:bg-black/5 dark:hover:bg-white/5 {{ $r->type === 'income' ? 'bg-green-50/40' : 'bg-red-50/40' }}">
                                             <td class="px-4 py-3 whitespace-nowrap">
                                                 {{ \Carbon\Carbon::parse($r->trx_date)->format('d/m/Y') }}</td>
                                             <td class="px-4 py-3 whitespace-nowrap">
@@ -244,7 +244,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="5" class="px-4 py-6 text-center text-gray-600">
+                                        <td colspan="5" class="px-4 py-6 text-center text-gray-600 dark:text-gray-300">
                                             Belum ada realisasi.
                                         </td>
                                     </tr>
@@ -266,9 +266,6 @@
                     </div>
                 </div>
 
-                {{-- <div class="px-4 md:px-6 pb-4 md:pb-6 text-center text-xs italic text-white/80">
-                    Hak Cipta Milik Allah Semata
-                </div> --}}
             </div>
         </div>
     </div>

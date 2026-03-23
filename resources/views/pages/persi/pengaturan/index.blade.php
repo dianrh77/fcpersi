@@ -710,6 +710,122 @@
             background: #fff;
             outline: none;
         }
+
+        .dataTable-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .dataTable-info {
+            font-size: 14px;
+            color: #334155;
+        }
+
+        .dataTable-pagination {
+            margin-left: auto;
+        }
+
+        .dataTable-pagination-list {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dataTable-pagination-list li {
+            display: inline-flex;
+        }
+
+        .dataTable-pagination-list a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 34px;
+            height: 34px;
+            padding: 0 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(15, 63, 59, 0.2);
+            background: #fff;
+            color: #0F3F3B;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            line-height: 1;
+        }
+
+        .dataTable-pagination-list li.active a {
+            background: #0F3F3B;
+            border-color: #0F3F3B;
+            color: #fff;
+        }
+
+        .dataTable-pagination-list li.ellipsis a {
+            border-style: dashed;
+        }
+
+        .dataTable-pagination-list a:hover {
+            filter: brightness(0.97);
+        }
+
+        @media (max-width: 640px) {
+            .dataTable-bottom {
+                justify-content: center;
+            }
+
+            .dataTable-info {
+                width: 100%;
+                text-align: center;
+            }
+
+            .dataTable-pagination {
+                margin-left: 0;
+            }
+        }
+
+        html.dark .dataTable-wrapper {
+            color: #e5e7eb;
+        }
+
+        html.dark .dataTable-table thead th {
+            color: #cbd5e1;
+            border-bottom-color: #374151;
+        }
+
+        html.dark .dataTable-table tbody td {
+            color: #f3f4f6;
+            border-bottom-color: #374151;
+        }
+
+        html.dark .dataTable-table tbody tr:nth-child(even) td {
+            background: rgba(255, 255, 255, .02);
+        }
+
+        html.dark .dataTable-table tbody tr:hover td {
+            background: rgba(255, 255, 255, .06);
+        }
+
+        html.dark .dataTable-search .dataTable-input,
+        html.dark .dataTable-selector {
+            background: #1f2937;
+            border-color: #374151;
+            color: #e5e7eb;
+        }
+
+        html.dark .dataTable-info {
+            color: #cbd5e1;
+        }
+
+        html.dark .dataTable-pagination-list a {
+            background: #1f2937;
+            border-color: #374151;
+            color: #e5e7eb;
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {

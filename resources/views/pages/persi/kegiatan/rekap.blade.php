@@ -43,20 +43,20 @@
                     <form method="GET" action="{{ route('persi.kegiatan.rekap') }}"
                         class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
                         <div class="md:col-span-5">
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Status Pengajuan</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-300">Status Pengajuan</label>
                             <select name="status"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm">
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 text-sm">
                                 <option value="outstanding" @selected(($status ?? 'outstanding') === 'outstanding')>Outstanding</option>
                                 <option value="closed" @selected(($status ?? '') === 'closed')>Closed</option>
                             </select>
                         </div>
 
                         <div class="md:col-span-7">
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Cari</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-300">Cari</label>
                             <div class="flex gap-2">
                                 <div class="relative w-full">
                                     <input type="text" name="q" value="{{ $q ?? '' }}"
-                                        class="w-full rounded-full border border-gray-200 bg-white pl-10 pr-4 py-2 text-sm"
+                                        class="w-full rounded-full border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 pl-10 pr-4 py-2 text-sm"
                                         placeholder="No Kegiatan / Nama Kegiatan...">
                                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">🔍</span>
                                 </div>
@@ -74,13 +74,13 @@
                     {{-- SUMMARY --}}
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
                         <div
-                            class="rounded-xl border border-black/10 bg-gray-100 px-4 py-3 flex items-center justify-between">
-                            <div class="text-sm font-bold text-gray-800">jml. Kegiatan</div>
+                            class="rounded-xl border border-black/10 bg-gray-100 dark:bg-gray-700/40 px-4 py-3 flex items-center justify-between">
+                            <div class="text-sm font-bold text-gray-800 dark:text-gray-200">jml. Kegiatan</div>
                             <div class="text-lg font-extrabold text-[#0F3F3B]">{{ $count ?? 0 }}</div>
                         </div>
                         <div
-                            class="rounded-xl border border-black/10 bg-gray-100 px-4 py-3 flex items-center justify-between">
-                            <div class="text-sm font-bold text-gray-800">jml. Outstanding</div>
+                            class="rounded-xl border border-black/10 bg-gray-100 dark:bg-gray-700/40 px-4 py-3 flex items-center justify-between">
+                            <div class="text-sm font-bold text-gray-800 dark:text-gray-200">jml. Outstanding</div>
                             <div class="text-lg font-extrabold text-blue-700">
                                 Rp {{ number_format((int) ($sumOutstanding ?? 0), 0, ',', '.') }}
                             </div>
@@ -88,9 +88,9 @@
                     </div>
 
                     {{-- TABLE --}}
-                    <div class="overflow-x-auto rounded-xl border border-black/10 bg-white">
-                        <table class="min-w-full text-sm">
-                            <thead class="bg-green-600 text-white">
+                    <div class="overflow-x-auto rounded-xl border border-black/10 bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <table class="min-w-full text-sm text-gray-900 dark:text-gray-100">
+                            <thead class="bg-green-600 text-white dark:bg-green-700">
                                 <tr>
                                     <th class="px-4 py-3">No</th>
                                     <th class="px-4 py-3">Tgl. Kegiatan</th>
@@ -102,7 +102,7 @@
                                     <th class="px-4 py-3 text-right">Outstanding</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-black/10">
+                            <tbody class="divide-y divide-black/10 dark:divide-gray-700 text-gray-900 dark:text-gray-100">
                                 @forelse($kegiatans as $i => $k)
                                     @php
                                         $budget = (int) $k->budget_amount;
@@ -110,7 +110,7 @@
                                         $masuk = (int) $k->income_total;
                                         $outstanding = (int) $k->outstanding;
                                     @endphp
-                                    <tr class="hover:bg-black/5">
+                                    <tr class="hover:bg-black/5 dark:hover:bg-white/5">
                                         <td class="px-4 py-3 whitespace-nowrap">{{ $i + 1 }}</td>
                                         <td class="px-4 py-3 whitespace-nowrap">
                                             {{ \Carbon\Carbon::parse($k->activity_date)->format('d/m/Y') }}</td>
@@ -131,7 +131,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="px-4 py-8 text-center text-gray-600">
+                                        <td colspan="8" class="px-4 py-8 text-center text-gray-600 dark:text-gray-300">
                                             Belum ada data rekap.
                                         </td>
                                     </tr>
@@ -142,9 +142,6 @@
 
                 </div>
 
-                <div class="px-4 md:px-6 pb-4 md:pb-6 text-center text-xs italic text-black/60">
-                    Hak Cipta Milik Allah Semata
-                </div>
             </div>
         </div>
     </div>

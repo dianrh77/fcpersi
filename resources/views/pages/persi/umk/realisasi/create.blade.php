@@ -63,49 +63,49 @@
 
                     {{-- HEADER UMK --}}
                     <div class="mb-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div class="rounded-xl border border-black/10 bg-white p-4">
+                        <div class="rounded-xl border border-black/10 bg-white dark:border-gray-700 dark:bg-gray-800 p-4">
                             <div class="grid grid-cols-1 gap-3">
                                 <div class="flex items-center justify-between gap-3">
-                                    <div class="text-sm font-semibold text-gray-700">No. UMK</div>
-                                    <div class="text-sm font-extrabold text-gray-900">
+                                    <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">No. UMK</div>
+                                    <div class="text-sm font-extrabold text-gray-900 dark:text-gray-100">
                                         {{ $umk->request_no ?? '-' }}
                                     </div>
                                 </div>
 
                                 <div class="flex items-center justify-between gap-3">
-                                    <div class="text-sm font-semibold text-gray-700">Tgl. Pengajuan</div>
-                                    <div class="text-sm font-bold text-gray-900">
+                                    <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">Tgl. Pengajuan</div>
+                                    <div class="text-sm font-bold text-gray-900 dark:text-gray-100">
                                         {{ $umk?->request_date ? \Carbon\Carbon::parse($umk->request_date)->format('d/m/Y') : '-' }}
                                     </div>
                                 </div>
 
                                 <div class="flex items-center justify-between gap-3">
-                                    <div class="text-sm font-semibold text-gray-700">Pos</div>
-                                    <div class="text-sm font-bold text-gray-900 text-right">
+                                    <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">Pos</div>
+                                    <div class="text-sm font-bold text-gray-900 dark:text-gray-100 text-right">
                                         {{ $umk->cashAccount->name ?? '-' }}
                                     </div>
                                 </div>
 
                                 <div class="flex items-center justify-between gap-3">
-                                    <div class="text-sm font-semibold text-gray-700">Status</div>
+                                    <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">Status</div>
                                     <div>
                                         <span
                                             class="inline-flex rounded-full px-2 py-0.5 text-xs font-bold
-                                                {{ ($umk->status ?? 'outstanding') === 'closed' ? 'bg-gray-100 text-gray-700' : 'bg-green-100 text-green-700' }}">
+                                                {{ ($umk->status ?? 'outstanding') === 'closed' ? 'bg-gray-100 dark:bg-gray-700/40 text-gray-700 dark:text-gray-300' : 'bg-green-100 text-green-700' }}">
                                             {{ ($umk->status ?? 'outstanding') === 'closed' ? 'Closed' : 'Outstanding' }}
                                         </span>
                                     </div>
                                 </div>
 
                                 <div class="flex items-center justify-between gap-3">
-                                    <div class="text-sm font-semibold text-gray-700">Nominal UMK</div>
-                                    <div class="text-sm font-extrabold text-gray-900">
+                                    <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">Nominal UMK</div>
+                                    <div class="text-sm font-extrabold text-gray-900 dark:text-gray-100">
                                         Rp {{ number_format((int) ($umk->amount ?? 0), 0, ',', '.') }}
                                     </div>
                                 </div>
 
                                 <div class="flex items-center justify-between gap-3">
-                                    <div class="text-sm font-semibold text-gray-700">Outstanding</div>
+                                    <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">Outstanding</div>
                                     <div class="text-lg font-extrabold text-blue-700">
                                         Rp {{ number_format((int) ($umk->outstanding ?? 0), 0, ',', '.') }}
                                     </div>
@@ -113,13 +113,13 @@
                             </div>
                         </div>
 
-                        <div class="rounded-xl border border-black/10 bg-white p-4">
-                            <div class="text-sm font-semibold text-gray-700 mb-2">Nama & Deskripsi Kegiatan</div>
-                            <div class="font-extrabold text-gray-900">
+                        <div class="rounded-xl border border-black/10 bg-white dark:border-gray-700 dark:bg-gray-800 p-4">
+                            <div class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Nama & Deskripsi Kegiatan</div>
+                            <div class="font-extrabold text-gray-900 dark:text-gray-100">
                                 {{ $umk->activity_name ?? '-' }}
                             </div>
                             <div
-                                class="mt-2 min-h-[74px] rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-800">
+                                class="mt-2 min-h-[74px] rounded-lg border border-gray-200 bg-gray-50 dark:bg-gray-700/40 px-3 py-2 text-sm text-gray-800 dark:text-gray-200">
                                 {{ $umk->activity_description ?? '-' }}
                             </div>
                         </div>
@@ -134,9 +134,9 @@
                         @csrf
 
                         <div class="md:col-span-3">
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Tanggal</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-300">Tanggal</label>
                             <input type="date" name="trx_date" value="{{ old('trx_date', now()->toDateString()) }}"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 text-sm"
                                 @if (($umk->status ?? 'outstanding') === 'closed') disabled @endif required>
                             @error('trx_date')
                                 <div class="mt-1 text-xs text-red-700">{{ $message }}</div>
@@ -144,9 +144,9 @@
                         </div>
 
                         <div class="md:col-span-3">
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Jenis Transaksi</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-300">Jenis Transaksi</label>
                             <select name="type"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 text-sm"
                                 @if (($umk->status ?? 'outstanding') === 'closed') disabled @endif required>
                                 <option value="expense" @selected(old('type', 'expense') === 'expense')>Pengeluaran</option>
                                 <option value="income" @selected(old('type') === 'income')>Penerimaan (Pengembalian)</option>
@@ -158,9 +158,9 @@
 
                         {{-- ✅ COA --}}
                         <div class="md:col-span-3">
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">COA</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-300">COA</label>
                             <select name="coa_account_id"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 text-sm"
                                 @if (($umk->status ?? 'outstanding') === 'closed') disabled @endif required>
                                 <option value="">Pilih COA</option>
                                 @foreach ($coaAccounts as $coa)
@@ -175,9 +175,9 @@
                         </div>
 
                         <div class="md:col-span-3">
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Jml. Realisasi (Rp.)</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-300">Jml. Realisasi (Rp.)</label>
                             <input type="text" name="amount" value="{{ old('amount') }}"
-                                class="rupiah w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                class="rupiah w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 text-sm"
                                 placeholder="Rp 0" inputmode="numeric" @if (($umk->status ?? 'outstanding') === 'closed') disabled @endif
                                 required>
                             @error('amount')
@@ -186,8 +186,8 @@
                         </div>
 
                         <div class="md:col-span-12">
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Keterangan</label>
-                            <textarea name="description" rows="3" class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-300">Keterangan</label>
+                            <textarea name="description" rows="3" class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 text-sm"
                                 placeholder="Keterangan..." @if (($umk->status ?? 'outstanding') === 'closed') disabled @endif>{{ old('description') }}</textarea>
                             @error('description')
                                 <div class="mt-1 text-xs text-red-700">{{ $message }}</div>
@@ -227,7 +227,7 @@
                     <div class="mt-6">
                         <div class="text-sm font-extrabold text-[#0F3F3B] mb-2">DETAIL REALISASI</div>
 
-                        <div class="overflow-x-auto rounded-xl border border-black/10 bg-white">
+                        <div class="overflow-x-auto rounded-xl border border-black/10 bg-white dark:border-gray-700 dark:bg-gray-800">
                             <table class="min-w-full text-sm">
                                 <thead class="bg-[#E77A2E] text-white">
                                     <tr>
@@ -238,10 +238,10 @@
                                         <th class="px-4 py-3">Keterangan</th>
                                     </tr>
                                 </thead>
-                                <tbody class="divide-y divide-black/10">
+                                <tbody class="divide-y divide-black/10 dark:divide-gray-700">
                                     @if ($umk && $umk->realizations && $umk->realizations->count())
                                         @foreach ($umk->realizations->sortByDesc('trx_date') as $r)
-                                            <tr class="hover:bg-black/5">
+                                            <tr class="hover:bg-black/5 dark:hover:bg-white/5">
                                                 <td class="px-4 py-3 whitespace-nowrap">
                                                     {{ $r->trx_date ? \Carbon\Carbon::parse($r->trx_date)->format('d/m/Y') : '-' }}
                                                 </td>
@@ -267,7 +267,7 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="5" class="px-4 py-6 text-center text-gray-600">
+                                            <td colspan="5" class="px-4 py-6 text-center text-gray-600 dark:text-gray-300">
                                                 Belum ada realisasi.
                                             </td>
                                         </tr>
@@ -279,9 +279,6 @@
 
                 </div>
 
-                <div class="px-4 md:px-6 pb-4 md:pb-6 text-center text-xs italic text-white/80">
-                    Hak Cipta Milik Allah Semata
-                </div>
             </div>
         </div>
     </div>

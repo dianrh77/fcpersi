@@ -8,13 +8,13 @@
     }
 }" @click.away="closeDropdown()">
     <!-- User Button -->
-    <button class="flex items-center text-gray-700 dark:text-gray-400" @click.prevent="toggleDropdown()" type="button">
+    <button class="flex items-center text-white/90 hover:text-white" @click.prevent="toggleDropdown()" type="button">
         <span class="mr-3 overflow-hidden rounded-full h-11 w-11">
             <img
                 src="{{ auth()->user()->avatar_path ? asset(auth()->user()->avatar_path) : asset('/images/user/owner.png') }}" />
         </span>
 
-        <span class="block mr-1 font-medium text-theme-sm">
+        <span class="block mr-1 font-medium text-theme-sm text-white/90">
             {{ auth()->user()->name }}
         </span>
 

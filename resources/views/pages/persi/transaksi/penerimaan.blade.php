@@ -34,16 +34,16 @@
 
                         {{-- Tanggal --}}
                         <div>
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Tanggal</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Tanggal</label>
                             <input type="date" name="trx_date" value="{{ old('trx_date', now()->toDateString()) }}"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm" required>
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm" required>
                         </div>
 
                         {{-- Pos --}}
                         <div>
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Pos</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Pos</label>
                             <select name="cash_account_id"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm" required>
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm" required>
                                 <option value="">Pilih Pos</option>
                                 @foreach ($cashAccounts as $acc)
                                     <option value="{{ $acc->id }}" @selected((string) old('cash_account_id') === (string) $acc->id)>
@@ -55,9 +55,9 @@
 
                         {{-- COA (utama) --}}
                         <div>
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Nama Penerimaan (COA)</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Nama Penerimaan (COA)</label>
                             <select name="coa_account_id"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm" required>
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm" required>
                                 <option value="">Pilih COA Penerimaan</option>
 
                                 @foreach ($coaGroups as $group)
@@ -75,9 +75,9 @@
 
                         {{-- Nama RS (opsional) --}}
                         <div>
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Nama RS (Opsional)</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Nama RS (Opsional)</label>
                             <select name="member_id"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm">
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm">
                                 <option value="">- (Opsional) -</option>
                                 @foreach ($members as $m)
                                     <option value="{{ $m->id }}" @selected((string) old('member_id') === (string) $m->id)>
@@ -89,32 +89,32 @@
 
                         {{-- Nominal (format rupiah) --}}
                         <div>
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Nominal (Rp.)</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Nominal (Rp.)</label>
 
                             {{-- input tampilan (pakai titik) --}}
                             <input type="text" id="amount_display" inputmode="numeric"
                                 value="{{ old('amount') ? number_format((int) old('amount'), 0, ',', '.') : '' }}"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm"
                                 placeholder="Contoh: 1.500.000" required>
 
                             {{-- input hidden untuk nilai asli (integer) yang dikirim ke server --}}
                             <input type="hidden" name="amount" id="amount" value="{{ old('amount') }}">
 
-                            <div class="mt-1 text-xs text-gray-600">Ketik angka, otomatis jadi format Rp.</div>
+                            <div class="mt-1 text-xs text-gray-600 dark:text-gray-300">Ketik angka, otomatis jadi format Rp.</div>
                         </div>
 
                         {{-- No Referensi --}}
                         <div>
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">No. Referensi (opsional)</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">No. Referensi (opsional)</label>
                             <input type="text" name="reference_no" value="{{ old('reference_no') }}"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm"
                                 placeholder="Contoh: INV-001">
                         </div>
 
                         {{-- Deskripsi --}}
                         <div class="md:col-span-2">
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Deskripsi Transaksi</label>
-                            <textarea name="description" rows="4" class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Deskripsi Transaksi</label>
+                            <textarea name="description" rows="4" class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm"
                                 placeholder="Keterangan...">{{ old('description') }}</textarea>
                         </div>
 

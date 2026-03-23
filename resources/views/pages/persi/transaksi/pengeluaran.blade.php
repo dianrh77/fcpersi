@@ -25,7 +25,7 @@
                 </div>
             @endif
 
-            <div class="mt-4 rounded-2xl bg-[#0F3F3B] p-4 md:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.12)]">
+            <div class="mt-4 rounded-2xl bg-[#E77A2E] p-4 md:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.12)]">
                 <div class="rounded-xl bg-[#F5F1E6] p-4 md:p-6">
 
                     <form method="POST" action="{{ route('persi.trx.pengeluaran.store') }}"
@@ -34,16 +34,16 @@
 
                         {{-- Tanggal --}}
                         <div>
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Tanggal</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Tanggal</label>
                             <input type="date" name="trx_date" value="{{ old('trx_date', now()->toDateString()) }}"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm" required>
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm" required>
                         </div>
 
                         {{-- Pos --}}
                         <div>
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Pos</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Pos</label>
                             <select name="cash_account_id"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm" required>
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm" required>
                                 <option value="">Pilih Pos</option>
                                 @foreach ($cashAccounts as $acc)
                                     <option value="{{ $acc->id }}" @selected((string) old('cash_account_id') === (string) $acc->id)>
@@ -55,9 +55,9 @@
 
                         {{-- COA (utama) --}}
                         <div>
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Nama Pengeluaran (COA)</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Nama Pengeluaran (COA)</label>
                             <select name="coa_account_id"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm" required>
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm" required>
                                 <option value="">Pilih COA Pengeluaran</option>
 
                                 @foreach ($coaGroups as $group)
@@ -75,16 +75,16 @@
                                 @endforeach
                             </select>
 
-                            <div class="mt-1 text-xs text-gray-600">
+                            <div class="mt-1 text-xs text-gray-600 dark:text-gray-300">
                                 Pilih sub COA (mis: 2.1.1, 2.2.3, dst).
                             </div>
                         </div>
 
                         {{-- Nama RS (opsional) --}}
                         <div>
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Nama RS (Opsional)</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Nama RS (Opsional)</label>
                             <select name="member_id"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm">
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm">
                                 <option value="">- (Opsional) -</option>
                                 @foreach ($members as $m)
                                     <option value="{{ $m->id }}" @selected((string) old('member_id') === (string) $m->id)>
@@ -96,36 +96,36 @@
 
                         {{-- Nominal (format rupiah) --}}
                         <div>
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Nominal (Rp.)</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Nominal (Rp.)</label>
 
                             <input type="text" id="amount_display" inputmode="numeric"
                                 value="{{ old('amount') ? number_format((int) old('amount'), 0, ',', '.') : '' }}"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm"
                                 placeholder="Contoh: 1.500.000" required>
 
                             <input type="hidden" name="amount" id="amount" value="{{ old('amount') }}">
 
-                            <div class="mt-1 text-xs text-gray-600">Akan dicek saldo pos sebelum disimpan.</div>
+                            <div class="mt-1 text-xs text-gray-600 dark:text-gray-300">Akan dicek saldo pos sebelum disimpan.</div>
                         </div>
 
                         {{-- No Referensi --}}
                         <div>
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">No. Referensi (opsional)</label>
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">No. Referensi (opsional)</label>
                             <input type="text" name="reference_no" value="{{ old('reference_no') }}"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                                class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm"
                                 placeholder="Contoh: TRF-001">
                         </div>
 
                         {{-- Deskripsi --}}
                         <div class="md:col-span-2">
-                            <label class="mb-1 block text-xs font-semibold text-gray-700">Deskripsi Transaksi</label>
-                            <textarea name="description" rows="4" class="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
+                            <label class="mb-1 block text-xs font-semibold text-gray-700 dark:text-gray-200">Deskripsi Transaksi</label>
+                            <textarea name="description" rows="4" class="w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-400 px-3 py-2 text-sm"
                                 placeholder="Keterangan...">{{ old('description') }}</textarea>
                         </div>
 
                         <div class="md:col-span-2 flex justify-end">
                             <button type="submit"
-                                class="inline-flex items-center rounded-full bg-[#0F3F3B] px-7 py-3 text-sm font-bold text-white shadow hover:brightness-110">
+                                class="inline-flex items-center rounded-full bg-[#E77A2E] px-7 py-3 text-sm font-bold text-white shadow hover:brightness-110">
                                 SIMPAN PENGELUARAN
                             </button>
                         </div>

@@ -124,9 +124,6 @@
                     </div>
                 </div>
 
-                <div class="px-4 md:px-6 pb-4 md:pb-6 text-center text-xs italic text-white/80">
-                    Hak Cipta Milik Allah Semata
-                </div>
             </div>
         </div>
     </div>

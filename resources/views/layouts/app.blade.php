@@ -34,19 +34,24 @@
                     const body = document.body;
                     if (this.theme === 'dark') {
                         html.classList.add('dark');
-                        body.classList.add('dark', 'bg-gray-900');
+                        if (body) {
+                            body.classList.add('dark', 'bg-gray-900');
+                        }
                     } else {
                         html.classList.remove('dark');
-                        body.classList.remove('dark', 'bg-gray-900');
+                        if (body) {
+                            body.classList.remove('dark', 'bg-gray-900');
+                        }
                     }
                 }
             });
 
             Alpine.store('sidebar', {
-                // Initialize based on screen size
-                isExpanded: window.innerWidth >= 1280, // true for desktop, false for mobile
+                // Default collapsed on initial load (desktop & mobile)
+                isExpanded: false,
                 isMobileOpen: false,
                 isHovered: false,
+                viewportWidth: window.innerWidth,
 
                 toggleExpanded() {
                     this.isExpanded = !this.isExpanded;
@@ -65,9 +70,13 @@
 
                 setHovered(val) {
                     // Only allow hover effects on desktop when sidebar is collapsed
-                    if (window.innerWidth >= 1280 && !this.isExpanded) {
+                    if (this.viewportWidth >= 1280 && !this.isExpanded) {
                         this.isHovered = val;
                     }
+                },
+
+                setViewportWidth(val) {
+                    this.viewportWidth = val;
                 }
             });
         });
@@ -78,12 +87,17 @@
         (function() {
             const savedTheme = localStorage.getItem('theme');
             const theme = savedTheme || 'light';
+            const body = document.body;
             if (theme === 'dark') {
                 document.documentElement.classList.add('dark');
-                document.body.classList.add('dark', 'bg-gray-900');
+                if (body) {
+                    body.classList.add('dark', 'bg-gray-900');
+                }
             } else {
                 document.documentElement.classList.remove('dark');
-                document.body.classList.remove('dark', 'bg-gray-900');
+                if (body) {
+                    body.classList.remove('dark', 'bg-gray-900');
+                }
             }
         })();
     </script>
@@ -99,14 +113,15 @@
 
 </head>
 
-<body class="overflow-x-hidden" x-data="{ 'loaded': true }" x-init="$store.sidebar.isExpanded = window.innerWidth >= 1280;
+<body class="overflow-x-hidden" x-data="{ 'loaded': true }" x-init="$store.sidebar.isExpanded = false;
+$store.sidebar.setViewportWidth(window.innerWidth);
 const checkMobile = () => {
+    $store.sidebar.setViewportWidth(window.innerWidth);
     if (window.innerWidth < 1280) {
         $store.sidebar.setMobileOpen(false);
         $store.sidebar.isExpanded = false;
     } else {
         $store.sidebar.isMobileOpen = false;
-        $store.sidebar.isExpanded = true;
     }
 };
 window.addEventListener('resize', checkMobile);">
@@ -123,7 +138,7 @@ window.addEventListener('resize', checkMobile);">
             :class="{
                 'ml-0 w-full': $store.sidebar.isMobileOpen
             }"
-            :style="window.innerWidth >= 1280
+            :style="$store.sidebar.viewportWidth >= 1280
                 ? (($store.sidebar.isExpanded || $store.sidebar.isHovered)
                     ? 'margin-left:200px;width:calc(100% - 200px);'
                     : 'margin-left:90px;width:calc(100% - 90px);')
